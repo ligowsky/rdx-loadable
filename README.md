@@ -77,10 +77,10 @@ A generic class representing the state of a Loadable resource.
 * `D` — The type of data.
 * `E` — The type of the error that can occur.
 
-### `data`
+#### `data`
 Current data of type `D` or `null` if no data has been loaded yet.
 
-### `status`
+#### `status`
 Current status of the Loadable resource.
 
 #### `error`
