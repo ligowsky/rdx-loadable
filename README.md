@@ -9,7 +9,68 @@ methods for creating new instances of the `Loadable` class in specific states.
 `Loadable` is good for use in front-end applications that need to manage asynchronous data 
 loading and resource creation, update, delete operations.
 
+# Usage 
+
+### Installation
+
+```bash
+npm install rdx-loadable
+```
+
+### NGRX
+
+```typescript
+export type FooState = {
+  foo: Loadable<Foo>;
+};
+
+const initialState: FooState = {
+  foo: new Loadable<Foo>(),
+};
+
+export const fooReducer = createReducer(
+  initialState,
+
+  on(
+    FooActions.fooLoad,
+    (state): FooState => ({
+      ...state,
+      foo: state.foo.getLoading(),
+    })
+  ),
+
+  on(
+    FooActions.fooLoadSuccess,
+    (state, action): FooState => ({
+      ...state,
+      foo: state.foo.getLoaded(action.foo),
+    })
+  ),
+
+  on(
+    FooActions.fooLoadFailure,
+    (state, action): FooState => ({
+      ...state,
+      foo: state.foo.getFailed(action.error),
+    })
+  )
+);
+```
+
 # Documentation
+
+### `LoadableStatus` enum
+An enum representing the status of a Loadable resource.
+* `Initial`
+* `Loading`
+* `Loaded`
+* `Creating`
+* `Created`
+* `Updating`
+* `Updated`
+* `Deleting`
+* `Deleted`
+* `Failed`
 
 ### `Loadable<D, E = Error>`
 A generic class representing the state of a Loadable resource.
@@ -22,110 +83,110 @@ Current data of type `D` or `null` if no data has been loaded yet.
 ### `status`
 Current status of the Loadable resource.
 
-### `error`
+#### `error`
 The error of type `E` that occurred while working with data or `null` if no error occurred.
 
-### `isInitial`
+#### `isInitial`
 * **Returns:** `true` — if the Loadable resource is in the Initial status, `false` otherwise.
 
-### `isLoading`
+#### `isLoading`
 * **Returns:** `true` — if the Loadable resource is in the Loading status, `false` otherwise.
 
-### `isLoaded`
+#### `isLoaded`
 * **Returns:** `true` — if the Loadable resource is in the Loaded status, `false` otherwise.
 
-### `isCreating`
+#### `isCreating`
 * **Returns:** `true` — if the Loadable resource is in the Creating status, `false` otherwise.
 
-### `isCreated`
+#### `isCreated`
 * **Returns:** `true` — if the Loadable resource is in the Created status, `false` otherwise.
 
-### `isUpdating`
+#### `isUpdating`
 * **Returns:** `true` — if the Loadable resource is in the Updating status, `false` otherwise.
 
-### `isUpdated`
+#### `isUpdated`
 * **Returns:** `true` — if the Loadable resource is in the Updated status, `false` otherwise.
 
-### `isDeleting`
+#### `isDeleting`
 * **Returns:** `true` — if the Loadable resource is in the Deleting status, `false` otherwise.
 
-### `isDeleted`
+#### `isDeleted`
 * **Returns:** `true` — if the Loadable resource is in the Deleted status, `false` otherwise.
 
-### `isFailed`
+#### `isFailed`
 * **Returns:** `true` — if the Loadable resource is in the Failed status, `false` otherwise.
 
-### `isInProgress`
+#### `isInProgress`
 * **Returns:** `true` — if the Loadable resource is in the Loading, Creating, Updating or Deleting status, `false` otherwise.
 
-### `isInitialOrLoaded`
+#### `isInitialOrLoaded`
 * **Returns:** `true` — if the Loadable resource is in the Initial or Loaded status, `false` otherwise.
 
-### `isPersisted`
+#### `isPersisted`
 * **Returns:** `true` — if the Loadable resource is in the Created or Updated status, `false` otherwise.
 
-### `isCompleted`
+#### `isCompleted`
 * **Returns:** `true` — if the Loadable resource is in the Loaded, Created, Updated or Deleted status, `false` otherwise.
 
-### `getInitial(data: D | null = null): Loadable<D, E>`
+#### `getInitial(data: D | null = null): Loadable<D, E>`
 * **Parameters:** `data` — Data.
 * **Returns:** new `Loadable` instance in the Initial status with optional initial data.
 
-### `setInitial(data: D | null = null): void`
+#### `setInitial(data: D | null = null): void`
 Sets the `Loadable` to the Initial status with optional initial data.
 * **Parameters:** `data` — Data.
 
-### `getLoading(): Loadable<D, E>`
+#### `getLoading(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Loading status.
 
-### `setLoading(): void`
+#### `setLoading(): void`
 Sets the `Loadable` to the Loading status with data, sets the error to `null`.
 
-### `getLoaded(data: D): Loadable<D, E>`
+#### `getLoaded(data: D): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Loaded status with data.
 
-### `setLoaded(data: D): void`
+#### `setLoaded(data: D): void`
 Sets the `Loadable` to the Loaded status with data, sets the error to `null`.
 * **Parameters:** `data` — Data.
 
-### `getCreating(): Loadable<D, E>`
+#### `getCreating(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Creating status with data,
 
-### `setCreating(): void`
+#### `setCreating(): void`
 Sets the `Loadable` to the Creating status, sets the error to `null`.
 
-### `getCreated(data: D): Loadable<D, E>`
+#### `getCreated(data: D): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Created status with data.
 
-### `setCreated(data: D): void`
+#### `setCreated(data: D): void`
 Sets the `Loadable` to the Created status, sets the error to `null`.
 
-### `getUpdating(): Loadable<D, E>`
+#### `getUpdating(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Updating status.
 
-### `setUpdating(): void`
+#### `setUpdating(): void`
 Sets the `Loadable` to the Updating status, sets the error to `null`.
 
-### `getUpdated(data: D): Loadable<D, E>`
+#### `getUpdated(data: D): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Updated status with data.
 
-### `setUpdated(data: D): void`
+#### `setUpdated(data: D): void`
 Sets the `Loadable` to the Updated status, sets the error to `null`.
 
-### `getDeleting(): Loadable<D, E>`
+#### `getDeleting(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Deleting status.
 
-### `setDeleting(): void`
+#### `setDeleting(): void`
 Sets the `Loadable` to the Deleting status, sets the error to `null`.
 
-### `getDeleted(): Loadable<D, E>`
+#### `getDeleted(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Deleted status.
 
-### `setDeleted(): void`
+#### `setDeleted(): void`
 Sets the `Loadable` to the Deleted status, sets the error to `null`.
 
-### `getFailed(error: E): Loadable<D, E>`
+#### `getFailed(error: E): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Failed status with an error.
 
-### `setFailed(error: E): void`
+#### `setFailed(error: E): void`
 Sets the `Loadable` to the Failed status, sets the error.
