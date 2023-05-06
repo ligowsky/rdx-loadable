@@ -162,7 +162,7 @@ export class Loadable<D, E = Error> {
    * @param data - Data.
    * @returns A new `Loadable` instance in the Initial status with optional initial data.
    */
-  getInitial(data: D | null = null): Loadable<D, E> {
+  toInitial(data: D | null = null): Loadable<D, E> {
     return new Loadable<D, E>(data, LoadableStatus.Initial);
   }
 
@@ -179,7 +179,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Loading status.
    */
-  getLoading(): Loadable<D, E> {
+  toLoading(): Loadable<D, E> {
     return new Loadable<D, E>(this._data, LoadableStatus.Loading);
   }
 
@@ -195,7 +195,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Loaded status with data.
    */
-  getLoaded(data: D): Loadable<D, E> {
+  toLoaded(data: D): Loadable<D, E> {
     return new Loadable<D, E>(data, LoadableStatus.Loaded);
   }
 
@@ -213,7 +213,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Creating status with data,
    */
-  getCreating(): Loadable<D, E> {
+  toCreating(): Loadable<D, E> {
     return new Loadable<D, E>(this._data, LoadableStatus.Creating);
   }
 
@@ -229,7 +229,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Created status with data.
    */
-  getCreated(data: D): Loadable<D, E> {
+  toCreated(data: D): Loadable<D, E> {
     return new Loadable<D, E>(data, LoadableStatus.Created);
   }
 
@@ -246,7 +246,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Updating status.
    */
-  getUpdating(): Loadable<D, E> {
+  toUpdating(): Loadable<D, E> {
     return new Loadable<D, E>(this._data, LoadableStatus.Updating);
   }
 
@@ -262,7 +262,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Updated status with data.
    */
-  getUpdated(data: D): Loadable<D, E> {
+  toUpdated(data: D): Loadable<D, E> {
     return new Loadable<D, E>(data, LoadableStatus.Updated);
   }
 
@@ -279,7 +279,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Deleting status.
    */
-  getDeleting(): Loadable<D, E> {
+  toDeleting(): Loadable<D, E> {
     return new Loadable<D, E>(this._data, LoadableStatus.Deleting);
   }
 
@@ -295,7 +295,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Deleted status.
    */
-  getDeleted(): Loadable<D, E> {
+  toDeleted(): Loadable<D, E> {
     return new Loadable<D, E>(null, LoadableStatus.Deleted);
   }
 
@@ -312,7 +312,7 @@ export class Loadable<D, E = Error> {
   /**
    * @returns A new `Loadable` instance in the Failed status with an error.
    */
-  getFailed(error: E): Loadable<D, E> {
+  toFailed(error: E): Loadable<D, E> {
     return new Loadable<D, E>(this._data, LoadableStatus.Failed, error);
   }
 

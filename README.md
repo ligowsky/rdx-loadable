@@ -35,7 +35,7 @@ export const fooReducer = createReducer(
     FooActions.fooLoad,
     (state): FooState => ({
       ...state,
-      foo: state.foo.getLoading(),
+      foo: state.foo.toLoading(),
     })
   ),
 
@@ -43,7 +43,7 @@ export const fooReducer = createReducer(
     FooActions.fooLoadSuccess,
     (state, action): FooState => ({
       ...state,
-      foo: state.foo.getLoaded(action.foo),
+      foo: state.foo.toLoaded(action.foo),
     })
   ),
 
@@ -51,7 +51,7 @@ export const fooReducer = createReducer(
     FooActions.fooLoadFailure,
     (state, action): FooState => ({
       ...state,
-      foo: state.foo.getFailed(action.error),
+      foo: state.foo.toFailed(action.error),
     })
   )
 );
@@ -128,7 +128,7 @@ The error of type `E` that occurred while working with data or `null` if no erro
 #### `isCompleted`
 * **Returns:** `true` — if the Loadable resource is in the Loaded, Created, Updated or Deleted status, `false` otherwise.
 
-#### `getInitial(data: D | null = null): Loadable<D, E>`
+#### `toInitial(data: D | null = null): Loadable<D, E>`
 * **Parameters:** `data` — Data.
 * **Returns:** new `Loadable` instance in the Initial status with optional initial data.
 
@@ -136,56 +136,56 @@ The error of type `E` that occurred while working with data or `null` if no erro
 Sets the `Loadable` to the Initial status with optional initial data.
 * **Parameters:** `data` — Data.
 
-#### `getLoading(): Loadable<D, E>`
+#### `toLoading(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Loading status.
 
 #### `setLoading(): void`
 Sets the `Loadable` to the Loading status with data, sets the error to `null`.
 
-#### `getLoaded(data: D): Loadable<D, E>`
+#### `toLoaded(data: D): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Loaded status with data.
 
 #### `setLoaded(data: D): void`
 Sets the `Loadable` to the Loaded status with data, sets the error to `null`.
 * **Parameters:** `data` — Data.
 
-#### `getCreating(): Loadable<D, E>`
+#### `toCreating(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Creating status with data,
 
 #### `setCreating(): void`
 Sets the `Loadable` to the Creating status, sets the error to `null`.
 
-#### `getCreated(data: D): Loadable<D, E>`
+#### `toCreated(data: D): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Created status with data.
 
 #### `setCreated(data: D): void`
 Sets the `Loadable` to the Created status, sets the error to `null`.
 
-#### `getUpdating(): Loadable<D, E>`
+#### `toUpdating(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Updating status.
 
 #### `setUpdating(): void`
 Sets the `Loadable` to the Updating status, sets the error to `null`.
 
-#### `getUpdated(data: D): Loadable<D, E>`
+#### `toUpdated(data: D): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Updated status with data.
 
 #### `setUpdated(data: D): void`
 Sets the `Loadable` to the Updated status, sets the error to `null`.
 
-#### `getDeleting(): Loadable<D, E>`
+#### `toDeleting(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Deleting status.
 
 #### `setDeleting(): void`
 Sets the `Loadable` to the Deleting status, sets the error to `null`.
 
-#### `getDeleted(): Loadable<D, E>`
+#### `toDeleted(): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Deleted status.
 
 #### `setDeleted(): void`
 Sets the `Loadable` to the Deleted status, sets the error to `null`.
 
-#### `getFailed(error: E): Loadable<D, E>`
+#### `toFailed(error: E): Loadable<D, E>`
 * **Returns:** new `Loadable` instance in the Failed status with an error.
 
 #### `setFailed(error: E): void`
