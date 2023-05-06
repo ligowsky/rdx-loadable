@@ -171,9 +171,7 @@ export class Loadable<D, E = Error> {
    * @param data - Data.
    */
   setInitial(data: D | null = null): void {
-    this._data = data;
-    this._status = LoadableStatus.Initial;
-    this._error = null;
+    this.setStatus(LoadableStatus.Initial, data);
   }
 
   /**
@@ -188,8 +186,7 @@ export class Loadable<D, E = Error> {
    * sets the error to 'null'.
    */
   setLoading(): void {
-    this._status = LoadableStatus.Loading;
-    this._error = null;
+    this.setStatus(LoadableStatus.Loading, this.data);
   }
 
   /**
@@ -205,9 +202,7 @@ export class Loadable<D, E = Error> {
    * @param data - Data.
    */
   setLoaded(data: D): void {
-    this._data = data;
-    this._status = LoadableStatus.Loaded;
-    this._error = null;
+    this.setStatus(LoadableStatus.Loaded, data);
   }
 
   /**
@@ -222,8 +217,7 @@ export class Loadable<D, E = Error> {
    * sets the error to 'null'.
    */
   setCreating(): void {
-    this._status = LoadableStatus.Creating;
-    this._error = null;
+    this.setStatus(LoadableStatus.Creating, this._data);
   }
 
   /**
@@ -238,9 +232,7 @@ export class Loadable<D, E = Error> {
    * sets the error to 'null'.
    */
   setCreated(data: D): void {
-    this._data = data;
-    this._status = LoadableStatus.Created;
-    this._error = null;
+    this.setStatus(LoadableStatus.Created, data);
   }
 
   /**
@@ -255,8 +247,7 @@ export class Loadable<D, E = Error> {
    * sets the error to 'null'.
    */
   setUpdating(): void {
-    this._status = LoadableStatus.Updating;
-    this._error = null;
+    this.setStatus(LoadableStatus.Updating, this._data);
   }
 
   /**
@@ -271,9 +262,7 @@ export class Loadable<D, E = Error> {
    * sets the error to 'null'.
    */
   setUpdated(data: D): void {
-    this._data = data;
-    this._status = LoadableStatus.Updated;
-    this._error = null;
+    this.setStatus(LoadableStatus.Updated, data);
   }
 
   /**
@@ -288,8 +277,7 @@ export class Loadable<D, E = Error> {
    * sets the error to 'null'.
    */
   setDeleting(): void {
-    this._status = LoadableStatus.Deleting;
-    this._error = null;
+    this.setStatus(LoadableStatus.Deleting, this._data);
   }
 
   /**
@@ -304,9 +292,7 @@ export class Loadable<D, E = Error> {
    * sets the error to 'null'.
    */
   setDeleted(): void {
-    this._data = null;
-    this._status = LoadableStatus.Deleted;
-    this._error = null;
+    this.setStatus(LoadableStatus.Deleted);
   }
 
   /**
@@ -321,7 +307,19 @@ export class Loadable<D, E = Error> {
    * sets the error.
    */
   setFailed(error: E): void {
-    this._status = LoadableStatus.Failed;
+    this.setStatus(LoadableStatus.Failed, this._data, error);
+  }
+
+  /**
+   * Sets the Loadable resource to the provided status,
+   */
+  private setStatus(
+    status: LoadableStatus,
+    data: D | null = null,
+    error: E | null = null
+  ): void {
+    this._status = status;
+    this._data = data;
     this._error = error;
   }
 }
