@@ -1,0 +1,17 @@
+{
+  "name": "rdx-loadable",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier 'src/**/*.{ts,json}' --write"
+  },
+  "keywords": [],
+  "author": "Vladimir Seldemirov",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
+  }
+}
