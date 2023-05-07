@@ -1,14 +1,18 @@
 {
   "name": "rdx-loadable",
-  "version": "0.1.2",
-  "description": "",
+  "version": "0.1.3",
+  "description": "Helps to set and read the status of entities in the application state",
   "main": "dist/loadable.js",
   "types": "dist/loadable.d.ts",
   "scripts": {
-    "build": "tsc",
-    "format": "prettier 'src/**/*.{ts,json}' --write"
+    "build": "tsc"
   },
-  "keywords": ["State", "Entity", "Status", "Redux"],
+  "keywords": [
+    "State",
+    "Entity",
+    "Status",
+    "Redux"
+  ],
   "author": "Vladimir Seldemirov",
   "license": "MIT",
   "repository": {
@@ -16,7 +20,6 @@
     "url": "https://github.com/ligowsky/rdx-loadable.git"
   },
   "devDependencies": {
-    "prettier": "^2.8.8",
     "typescript": "^5.0.4"
   },
   "files": [
