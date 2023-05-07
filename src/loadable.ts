@@ -1,4 +1,15 @@
-import { LoadableStatus } from './loadable-status.enum';
+export enum LoadableStatus {
+  Initial = 'INITIAL',
+  Loading = 'LOADING',
+  Loaded = 'LOADED',
+  Creating = 'CREATING',
+  Created = 'CREATED',
+  Updating = 'UPDATING',
+  Updated = 'UPDATED',
+  Deleting = 'DELETING',
+  Deleted = 'DELETED',
+  Failed = 'FAILED',
+}
 
 /**
  * A generic class representing the state of a Loadable resource.

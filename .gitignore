@@ -131,3 +131,6 @@ dist
 
 # IDE
 .idea
+
+# Operation system
+.DS_Store

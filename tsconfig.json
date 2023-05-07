@@ -1,6 +1,6 @@
 {
   "files": [
-    "src/index.ts"
+    "src/loadable.ts"
   ],
   "compilerOptions": {
     "target": "es2015",
